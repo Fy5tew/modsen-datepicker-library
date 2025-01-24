@@ -1,0 +1,35 @@
+{
+    "name": "@fy5tew/modsen-datepicker-library",
+    "version": "0.1.0",
+    "description": "Modsen DatePicker Library",
+    "main": "dist/index.cjs.js",
+    "module": "dist/index.esm.js",
+    "types": "dist/index.d.ts",
+    "exports": {
+        ".": {
+            "types": "./dist/index.d.ts",
+            "require": "./dist/index.cjs.js",
+            "import": "./dist/index.esm.js"
+        }
+    },
+    "files": [
+        "dist"
+    ],
+    "repository": "https://github.com/Fy5tew/modsen-datepicker-library.git",
+    "homepage": "https://github.com/Fy5tew/modsen-datepicker-library",
+    "author": "Fy5tew",
+    "private": "false",
+    "license": "MIT",
+    "scripts": {
+        "build": "rollup -c && tsc-alias",
+        "lint": "eslint . --fix",
+        "format": "prettier . --write",
+        "test": "jest --passWithNoTests",
+        "test-watch": "jest --watchAll --passWithNoTests",
+        "test-coverage": "jest --coverage --passWithNoTests",
+        "prepare": "husky",
+        "storybook": "storybook dev -p 6006",
+        "build-storybook": "storybook build"
+    }
+}
+
