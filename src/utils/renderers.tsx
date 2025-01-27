@@ -3,6 +3,7 @@ import {
     DefaultCell,
     DisabledCell,
     HolydayCell,
+    LockedCell,
     RangeDoubleCell,
     RangeEndCell,
     RangeMiddleCell,
@@ -56,6 +57,18 @@ export const disabledDayRenderer =
             ? DisabledCell
             : RenderComponent,
     });
+
+export const limitDayRenderer =
+    (minDate: Date, maxDate: Date): DayRenderer =>
+    ({ date, onClick, RenderComponent, ...props }) => {
+        const isInRange = isDayInRange(date, minDate, maxDate);
+        return {
+            ...props,
+            date,
+            onClick: isInRange ? onClick : () => {},
+            RenderComponent: isInRange ? RenderComponent : LockedCell,
+        };
+    };
 
 export const selectedDayRenderer =
     (selectedDay: Date, onClick?: DayCellProps['onClick']): DayRenderer =>

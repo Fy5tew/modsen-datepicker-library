@@ -1,6 +1,7 @@
 import { Meta, StoryObj } from '@storybook/react';
 import { fn } from '@storybook/test';
 
+import { withDateLimits } from '#/decorators/withDateLimits';
 import { withDaySelection } from '#/decorators/withDaySelection';
 import { withDisabledDays } from '#/decorators/withDisabledDays';
 import { withHolidays } from '#/decorators/withHolidays';
@@ -17,6 +18,7 @@ const Calendar = new CalendarBuilder()
     .applyDecorator(withDisabledDays())
     .applyDecorator(withDaySelection())
     .applyDecorator(withRangeSelection())
+    .applyDecorator(withDateLimits())
     .build();
 
 type Story = StoryObj<typeof Calendar>;
@@ -24,12 +26,22 @@ type Story = StoryObj<typeof Calendar>;
 const meta: Meta<typeof Calendar> = {
     title: 'Builder/Calendar',
     component: Calendar,
-    render: ({ date, selectedDay, rangeStart, rangeEnd, ...props }) => (
+    render: ({
+        date,
+        selectedDay,
+        rangeStart,
+        rangeEnd,
+        minDate,
+        maxDate,
+        ...props
+    }) => (
         <Calendar
             date={date && new Date(date)}
             selectedDay={selectedDay && new Date(selectedDay)}
             rangeStart={rangeStart && new Date(rangeStart)}
             rangeEnd={rangeEnd && new Date(rangeEnd)}
+            minDate={minDate && new Date(minDate)}
+            maxDate={maxDate && new Date(maxDate)}
             {...props}
         />
     ),
@@ -44,6 +56,12 @@ const meta: Meta<typeof Calendar> = {
             control: 'date',
         },
         rangeEnd: {
+            control: 'date',
+        },
+        minDate: {
+            control: 'date',
+        },
+        maxDate: {
             control: 'date',
         },
         weekdayDatasource: { table: { disable: true } },

@@ -47,6 +47,16 @@ export const DisabledCell = styled(BaseCell)`
     }
 `;
 
+export const LockedCell = styled(DisabledCell)`
+    opacity: 0.3;
+
+    @media (hover: hover) {
+        &:hover {
+            background: ${({ theme }) => theme.colors.calendarCellBg};
+        }
+    }
+`;
+
 export const SelectedCell = styled(BaseCell)`
     color: ${({ theme }) => theme.colors.calendarCellSelectedFg};
     background: ${({ theme }) => theme.colors.calendarCellSelectedBg};
