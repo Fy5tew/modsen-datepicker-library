@@ -44,6 +44,7 @@ export function DateInput({
     useEffect(() => {
         if (externalDate) {
             setInputValue(formatDate(externalDate));
+            setError(null);
         }
     }, [externalDate]);
 
