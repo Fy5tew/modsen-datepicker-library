@@ -1,9 +1,9 @@
 import { ComponentProps, ComponentType } from 'react';
 import styled from 'styled-components';
 
-export type DayCellRenderComponent = ComponentType<
-    ComponentProps<typeof BaseCell>
->;
+export type DayCellRenderProps = ComponentProps<typeof BaseCell>;
+
+export type DayCellRenderComponent = ComponentType<DayCellRenderProps>;
 
 export const BaseCell = styled.button`
     border: none;
@@ -136,9 +136,7 @@ export const HolydayCell = styled(BaseCell)`
     }
 `;
 
-export const TodoCell = (Base: DayCellRenderComponent = BaseCell) => styled(
-    Base
-)`
+const TodoCellWrapper = styled.div`
     position: relative;
 
     &::after {
@@ -152,4 +150,17 @@ export const TodoCell = (Base: DayCellRenderComponent = BaseCell) => styled(
         border-radius: 50%;
         background: ${({ theme }) => theme.colors.calendarCellTodoMarker};
     }
+
+    & > * {
+        width: 100%;
+        height: 100%;
+    }
 `;
+
+export const TodoCell =
+    (Base: DayCellRenderComponent = BaseCell) =>
+    (props: DayCellRenderProps) => (
+        <TodoCellWrapper>
+            <Base {...props} />
+        </TodoCellWrapper>
+    );
