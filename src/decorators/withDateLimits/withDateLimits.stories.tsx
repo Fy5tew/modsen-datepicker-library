@@ -48,15 +48,19 @@ const meta: Meta<typeof LimitedCalendar> = {
 
 export const Default: Story = {};
 
-export const WithOtherDecorators: Story = {
-    render: ({ date, minDate, maxDate, ...props }) => (
-        <LimitedDaySelectionCalendar
-            date={date && new Date(date)}
-            minDate={minDate && new Date(minDate)}
-            maxDate={maxDate && new Date(maxDate)}
-            {...props}
-        />
-    ),
-};
+export const WithOtherDecorators: StoryObj<typeof LimitedDaySelectionCalendar> =
+    {
+        render: ({ date, minDate, maxDate, ...props }) => (
+            <LimitedDaySelectionCalendar
+                date={date && new Date(date)}
+                minDate={minDate && new Date(minDate)}
+                maxDate={maxDate && new Date(maxDate)}
+                {...props}
+            />
+        ),
+        args: {
+            onDaySelect: fn(),
+        },
+    };
 
 export default meta;

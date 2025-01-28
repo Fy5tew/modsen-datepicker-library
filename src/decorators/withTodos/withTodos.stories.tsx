@@ -29,6 +29,7 @@ const meta: Meta<typeof TodosCalendar> = {
     },
     args: {
         onDateChange: fn(),
+        onDaySelect: fn(),
     },
 };
 

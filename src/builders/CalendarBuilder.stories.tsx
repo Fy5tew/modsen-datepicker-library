@@ -7,11 +7,14 @@ import { withDisabledDays } from '#/decorators/withDisabledDays';
 import { withHolidays } from '#/decorators/withHolidays';
 import { withMondayFirst } from '#/decorators/withMondayFirst';
 import { withRangeSelection } from '#/decorators/withRangeSelection';
+import { withTodos } from '#/decorators/withTodos';
 import { withWeekends } from '#/decorators/withWeekends';
 
 import { CalendarBuilder } from './CalendarBuilder';
 
-const Calendar = new CalendarBuilder()
+const DefaultCalendar = new CalendarBuilder().build();
+
+const CustomCalendar = new CalendarBuilder(DefaultCalendar)
     .applyDecorator(withMondayFirst())
     .applyDecorator(withWeekends())
     .applyDecorator(withHolidays())
@@ -21,11 +24,15 @@ const Calendar = new CalendarBuilder()
     .applyDecorator(withDateLimits())
     .build();
 
-type Story = StoryObj<typeof Calendar>;
+const TodosCustomCalendar = new CalendarBuilder(CustomCalendar)
+    .applyDecorator(withTodos())
+    .build();
 
-const meta: Meta<typeof Calendar> = {
+type Story = StoryObj<typeof CustomCalendar>;
+
+const meta: Meta<typeof CustomCalendar> = {
     title: 'Builder/Calendar',
-    component: Calendar,
+    component: CustomCalendar,
     render: ({
         date,
         selectedDay,
@@ -35,7 +42,7 @@ const meta: Meta<typeof Calendar> = {
         maxDate,
         ...props
     }) => (
-        <Calendar
+        <CustomCalendar
             date={date && new Date(date)}
             selectedDay={selectedDay && new Date(selectedDay)}
             rangeStart={rangeStart && new Date(rangeStart)}
@@ -77,6 +84,34 @@ const meta: Meta<typeof Calendar> = {
     },
 };
 
-export const Default: Story = {};
+export const Default: Story = {
+    render: ({ date, ...props }) => (
+        <DefaultCalendar date={date && new Date(date)} {...props} />
+    ),
+};
+
+export const Customized: Story = {};
+
+export const CustomizedWithTodos: Story = {
+    render: ({
+        date,
+        selectedDay,
+        rangeStart,
+        rangeEnd,
+        minDate,
+        maxDate,
+        ...props
+    }) => (
+        <TodosCustomCalendar
+            date={date && new Date(date)}
+            selectedDay={selectedDay && new Date(selectedDay)}
+            rangeStart={rangeStart && new Date(rangeStart)}
+            rangeEnd={rangeEnd && new Date(rangeEnd)}
+            minDate={minDate && new Date(minDate)}
+            maxDate={maxDate && new Date(maxDate)}
+            {...props}
+        />
+    ),
+};
 
 export default meta;
