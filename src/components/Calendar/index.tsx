@@ -18,6 +18,7 @@ import { defaultDayRenderer } from '#/utils/renderers';
 
 import { DateSlider } from '../DateSlider';
 import { DayCell } from '../DayCell';
+import { ErrorBoundary } from '../ErrorBoundary';
 import { WeekdayCell } from '../WeekdayCell';
 import { Wrapper } from './styled';
 
@@ -55,31 +56,36 @@ export function Calendar({
     };
 
     return (
-        <Wrapper>
-            <DateSlider
-                date={date}
-                formatTitle={formatCalendarSliderTitle}
-                onPrevClick={handlePrevClick}
-                onNextClick={handleNextClick}
-            />
-            <CellGrid
-                rows={ROWS_WEEKDAYS_COUNT}
-                columns={COLUMNS_COUNT}
-                overflow={false}
-            >
-                {weekdayDatasource(date).map((d) => (
-                    <WeekdayCell key={d} day={d} />
-                ))}
-            </CellGrid>
-            <CellGrid
-                rows={ROWS_DAYS_COUNT}
-                columns={COLUMNS_COUNT}
-                overflow={false}
-            >
-                {dayDatasource(date).map((d) => (
-                    <DayCell key={d.getTime()} {...dayRenderer({ date: d })} />
-                ))}
-            </CellGrid>
-        </Wrapper>
+        <ErrorBoundary>
+            <Wrapper>
+                <DateSlider
+                    date={date}
+                    formatTitle={formatCalendarSliderTitle}
+                    onPrevClick={handlePrevClick}
+                    onNextClick={handleNextClick}
+                />
+                <CellGrid
+                    rows={ROWS_WEEKDAYS_COUNT}
+                    columns={COLUMNS_COUNT}
+                    overflow={false}
+                >
+                    {weekdayDatasource(date).map((d) => (
+                        <WeekdayCell key={d} day={d} />
+                    ))}
+                </CellGrid>
+                <CellGrid
+                    rows={ROWS_DAYS_COUNT}
+                    columns={COLUMNS_COUNT}
+                    overflow={false}
+                >
+                    {dayDatasource(date).map((d) => (
+                        <DayCell
+                            key={d.getTime()}
+                            {...dayRenderer({ date: d })}
+                        />
+                    ))}
+                </CellGrid>
+            </Wrapper>
+        </ErrorBoundary>
     );
 }

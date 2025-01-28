@@ -11,6 +11,7 @@ import { useInternalValue } from '#/hooks/useInternalValue';
 import { useOnClickOutside } from '#/hooks/useOnClickOutside';
 
 import { DateInput } from '../DateInput';
+import { ErrorBoundary } from '../ErrorBoundary';
 import { InputWrapper, Overlay, Wrapper } from './styled';
 
 const DefaultCalendar = new CalendarBuilder()
@@ -80,39 +81,41 @@ export function RangePicker({
     };
 
     return (
-        <Wrapper>
-            <InputWrapper ref={startWrapperRef}>
-                <DateInput
-                    date={rangeStart}
-                    label={startLabel}
-                    placeholder={startPlaceholder}
-                    onChange={setRangeStart}
-                    onButtonClick={toggleStartOverlay}
-                />
-                <Overlay $isVisible={isStartOverlayOpen}>
-                    <Calendar
-                        rangeStart={rangeStart}
-                        rangeEnd={rangeEnd}
-                        onRangeChange={handleRangeChange}
+        <ErrorBoundary>
+            <Wrapper>
+                <InputWrapper ref={startWrapperRef}>
+                    <DateInput
+                        date={rangeStart}
+                        label={startLabel}
+                        placeholder={startPlaceholder}
+                        onChange={setRangeStart}
+                        onButtonClick={toggleStartOverlay}
                     />
-                </Overlay>
-            </InputWrapper>
-            <InputWrapper ref={endWrapperRef}>
-                <DateInput
-                    date={rangeEnd}
-                    label={endLabel}
-                    placeholder={endPlaceholder}
-                    onChange={setRangeEnd}
-                    onButtonClick={toggleEndOverlay}
-                />
-                <Overlay $isVisible={isEndOverlayOpen}>
-                    <Calendar
-                        rangeStart={rangeStart}
-                        rangeEnd={rangeEnd}
-                        onRangeChange={handleRangeChange}
+                    <Overlay $isVisible={isStartOverlayOpen}>
+                        <Calendar
+                            rangeStart={rangeStart}
+                            rangeEnd={rangeEnd}
+                            onRangeChange={handleRangeChange}
+                        />
+                    </Overlay>
+                </InputWrapper>
+                <InputWrapper ref={endWrapperRef}>
+                    <DateInput
+                        date={rangeEnd}
+                        label={endLabel}
+                        placeholder={endPlaceholder}
+                        onChange={setRangeEnd}
+                        onButtonClick={toggleEndOverlay}
                     />
-                </Overlay>
-            </InputWrapper>
-        </Wrapper>
+                    <Overlay $isVisible={isEndOverlayOpen}>
+                        <Calendar
+                            rangeStart={rangeStart}
+                            rangeEnd={rangeEnd}
+                            onRangeChange={handleRangeChange}
+                        />
+                    </Overlay>
+                </InputWrapper>
+            </Wrapper>
+        </ErrorBoundary>
     );
 }

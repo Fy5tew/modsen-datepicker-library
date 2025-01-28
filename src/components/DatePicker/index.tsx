@@ -12,6 +12,7 @@ import { useFlag } from '#/hooks/useFlag';
 import { useInternalValue } from '#/hooks/useInternalValue';
 import { useOnClickOutside } from '#/hooks/useOnClickOutside';
 
+import { ErrorBoundary } from '../ErrorBoundary';
 import { Overlay, Wrapper } from './styled';
 
 const DefaultCalendar = new CalendarBuilder()
@@ -48,17 +49,19 @@ export function DatePicker({
     useOnClickOutside(wrapperRef as RefObject<HTMLDivElement>, closeOverlay);
 
     return (
-        <Wrapper ref={wrapperRef}>
-            <DateInput
-                date={date}
-                label={label}
-                placeholder={placeholder}
-                onChange={setDate}
-                onButtonClick={toggleOverlay}
-            />
-            <Overlay $isVisible={isOverlayVisible}>
-                <Calendar selectedDay={date} onDaySelect={setDate} />
-            </Overlay>
-        </Wrapper>
+        <ErrorBoundary>
+            <Wrapper ref={wrapperRef}>
+                <DateInput
+                    date={date}
+                    label={label}
+                    placeholder={placeholder}
+                    onChange={setDate}
+                    onButtonClick={toggleOverlay}
+                />
+                <Overlay $isVisible={isOverlayVisible}>
+                    <Calendar selectedDay={date} onDaySelect={setDate} />
+                </Overlay>
+            </Wrapper>
+        </ErrorBoundary>
     );
 }

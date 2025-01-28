@@ -3,6 +3,7 @@ import { ChangeEvent, useEffect, useState } from 'react';
 import { useIcons } from '#/contexts/icons';
 import { useInternalValue } from '#/hooks/useInternalValue';
 
+import { ErrorBoundary } from '../ErrorBoundary';
 import {
     Button,
     ErrorMessage,
@@ -65,29 +66,31 @@ export function DateInput({
     };
 
     return (
-        <Wrapper>
-            <Label>
-                {label} {error && <ErrorMessage>{error}</ErrorMessage>}
-            </Label>
-            <InputWrapper>
-                <Button onClick={onButtonClick}>
-                    <Icon src={calendar} alt="" />
-                </Button>
-                <Input
-                    placeholder={placeholder}
-                    type="text"
-                    pattern="\d{2}\/\d{2}\/\d{4}"
-                    maxLength={15}
-                    value={inputValue}
-                    onChange={handleDateChange}
-                />
-                <Button
-                    $isHidden={inputValue.length <= 0}
-                    onClick={handleDateClear}
-                >
-                    <Icon src={clear} alt="" />
-                </Button>
-            </InputWrapper>
-        </Wrapper>
+        <ErrorBoundary>
+            <Wrapper>
+                <Label>
+                    {label} {error && <ErrorMessage>{error}</ErrorMessage>}
+                </Label>
+                <InputWrapper>
+                    <Button onClick={onButtonClick}>
+                        <Icon src={calendar} alt="" />
+                    </Button>
+                    <Input
+                        placeholder={placeholder}
+                        type="text"
+                        pattern="\d{2}\/\d{2}\/\d{4}"
+                        maxLength={15}
+                        value={inputValue}
+                        onChange={handleDateChange}
+                    />
+                    <Button
+                        $isHidden={inputValue.length <= 0}
+                        onClick={handleDateClear}
+                    >
+                        <Icon src={clear} alt="" />
+                    </Button>
+                </InputWrapper>
+            </Wrapper>
+        </ErrorBoundary>
     );
 }
