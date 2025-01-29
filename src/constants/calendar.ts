@@ -6,9 +6,9 @@ import {
 import { Day } from './days';
 
 export enum CalendarType {
-    WEEK,
-    MONTH,
-    YEAR,
+    WEEK = 'WEEK',
+    MONTH = 'MONTH',
+    YEAR = 'YEAR',
 }
 
 export const COLUMNS_WEEKDAYS_COUNT = 7;
