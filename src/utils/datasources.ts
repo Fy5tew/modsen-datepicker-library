@@ -1,7 +1,12 @@
-import { COLUMNS_COUNT, ROWS_DAYS_MONTH_COUNT } from '#/constants/calendar';
+import {
+    COLUMNS_COUNT,
+    ROWS_DAYS_MONTH_COUNT,
+    ROWS_DAYS_WEEK_COUNT,
+} from '#/constants/calendar';
 import { Day } from '#/constants/days';
 import {
     DayMonthDatasource,
+    DayWeekDatasource,
     IDayDatasourceManager,
     IWeekdayDatasourceManager,
     WeekdayWeekDatasource,
@@ -22,6 +27,27 @@ export function getWeekdayWeekDatasource(startDay: Day): WeekdayWeekDatasource {
         } while (day !== startDay);
 
         return weekdays;
+    };
+}
+
+export function getDayWeekDatasource(startDay: Day): DayWeekDatasource {
+    return function dayWeekDatasource(date: Date): Date[] {
+        const endDay = getPrevDay(startDay);
+        const weekDays = [date];
+
+        while (getDay(weekDays[0]) !== startDay) {
+            weekDays.unshift(getPrevDayDate(weekDays[0]));
+        }
+
+        while (getDay(weekDays.at(-1) as Date) !== endDay) {
+            weekDays.push(getNextDayDate(weekDays.at(-1) as Date));
+        }
+
+        while (weekDays.length !== COLUMNS_COUNT * ROWS_DAYS_WEEK_COUNT) {
+            weekDays.push(getNextDayDate(weekDays.at(-1) as Date));
+        }
+
+        return weekDays;
     };
 }
 
@@ -63,6 +89,10 @@ export class DayDatasourceManager implements IDayDatasourceManager {
 
     constructor(startDay: Day) {
         this._startDay = startDay;
+    }
+
+    getWeekDatasource(): DayWeekDatasource {
+        return getDayWeekDatasource(this._startDay);
     }
 
     getMonthDatasource(): DayMonthDatasource {

@@ -109,6 +109,18 @@ export function getPrevDayDate(date: Date): Date {
     return newDate;
 }
 
+export function getNextWeekDate(date: Date): Date {
+    const newDate = new Date(date);
+    newDate.setDate(newDate.getDate() + 7);
+    return newDate;
+}
+
+export function getPrevWeekDate(date: Date): Date {
+    const newDate = new Date(date);
+    newDate.setDate(newDate.getDate() - 7);
+    return newDate;
+}
+
 export function getNextMonthDate(date: Date): Date {
     return createDate(date.getFullYear(), date.getMonth() + 1, 1);
 }

@@ -36,3 +36,14 @@ export function dateMonthYearFormatter(date: Date): string {
     const year = dateYearFormatter(date);
     return `${month} ${year}`;
 }
+
+export function dateMonthWeekNumberFormatter(date: Date): string {
+    return Math.ceil(date.getDate() / 7).toString();
+}
+
+export function dateWeekMonthYearFormatter(date: Date): string {
+    const week = dateMonthWeekNumberFormatter(date);
+    const month = dateMonthFullNameFormatter(date);
+    const year = dateYearFormatter(date);
+    return `${month} ${year}, ${week} week`;
+}

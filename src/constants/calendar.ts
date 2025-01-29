@@ -6,11 +6,13 @@ import {
 import { Day } from './days';
 
 export enum CalendarType {
+    WEEK,
     MONTH,
 }
 
 export const COLUMNS_COUNT = 7;
 export const ROWS_WEEKDAYS_COUNT = 1;
+export const ROWS_DAYS_WEEK_COUNT = 1;
 export const ROWS_DAYS_MONTH_COUNT = 6;
 export const DEFAULT_START_DAY = Day.Sunday;
 

@@ -12,6 +12,7 @@ import { defaultDayRenderer } from '#/utils/renderers';
 
 import { MonthCalendar } from './MonthCalendar';
 import { CalendarProps } from './types';
+import { WeekCalendar } from './WeekCalendar';
 
 export function Calendar({
     date: externalDate,
@@ -29,6 +30,17 @@ export function Calendar({
 
     let calendarComponent: ReactNode;
     switch (type) {
+        case CalendarType.WEEK:
+            calendarComponent = (
+                <WeekCalendar
+                    date={date}
+                    weekdayDatasource={weekdayDatasourceManager.getWeekDatasource()}
+                    dayDatasource={dayDatasourceManager.getWeekDatasource()}
+                    dayRenderer={dayRenderer}
+                    onDateChange={setDate}
+                />
+            );
+            break;
         case CalendarType.MONTH:
             calendarComponent = (
                 <MonthCalendar
