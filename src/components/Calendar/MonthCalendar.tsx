@@ -1,3 +1,7 @@
+import { CellGrid } from '#/components/CellGrid';
+import { DateSlider } from '#/components/DateSlider';
+import { DayCell } from '#/components/DayCell';
+import { WeekdayCell } from '#/components/WeekdayCell';
 import {
     COLUMNS_COUNT,
     ROWS_DAYS_MONTH_COUNT,
@@ -6,11 +10,7 @@ import {
 import { useFormatters } from '#/contexts/formatters';
 import { getNextMonthDate, getPrevMonthDate } from '#/utils/date';
 
-import { CellGrid } from '../CellGrid';
-import { DateSlider } from '../DateSlider';
-import { DayCell } from '../DayCell';
-import { WeekdayCell } from '../WeekdayCell';
-import { MonthCalendarWrapper } from './styled';
+import { Wrapper } from './styled';
 import { MonthCalendarProps } from './types';
 
 export function MonthCalendar({
@@ -31,7 +31,7 @@ export function MonthCalendar({
     };
 
     return (
-        <MonthCalendarWrapper>
+        <Wrapper>
             <DateSlider
                 date={date}
                 formatTitle={formatCalendarSliderMonthTitle}
@@ -56,6 +56,6 @@ export function MonthCalendar({
                     <DayCell key={d.getTime()} {...dayRenderer({ date: d })} />
                 ))}
             </CellGrid>
-        </MonthCalendarWrapper>
+        </Wrapper>
     );
 }

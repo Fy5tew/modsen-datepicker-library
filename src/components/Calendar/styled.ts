@@ -1,6 +1,6 @@
 import { styled } from 'styled-components';
 
-export const BaseWrapper = styled.div`
+export const Wrapper = styled.div`
     font-family: ${({ theme }) => theme.fonts.calendar};
     font-size: ${({ theme }) => theme.fontSizes.calendar}px;
     font-weight: ${({ theme }) => theme.fontWeights.calendar};
@@ -11,5 +11,3 @@ export const BaseWrapper = styled.div`
     border-radius: 8px;
     padding: 0.5em;
 `;
-
-export const MonthCalendarWrapper = styled(BaseWrapper)``;
