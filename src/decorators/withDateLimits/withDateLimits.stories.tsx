@@ -37,8 +37,8 @@ const meta: Meta<typeof LimitedCalendar> = {
         maxDate: {
             control: 'date',
         },
-        weekdayDatasource: { table: { disable: true } },
-        dayDatasource: { table: { disable: true } },
+        weekdayDatasourceManager: { table: { disable: true } },
+        dayDatasourceManager: { table: { disable: true } },
         onDateChange: { table: { disable: true } },
     },
     args: {

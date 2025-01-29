@@ -23,8 +23,8 @@ const meta: Meta<typeof TodosCalendar> = {
         date: {
             control: 'date',
         },
-        weekdayDatasource: { table: { disable: true } },
-        dayDatasource: { table: { disable: true } },
+        weekdayDatasourceManager: { table: { disable: true } },
+        dayDatasourceManager: { table: { disable: true } },
         onDateChange: { table: { disable: true } },
     },
     args: {

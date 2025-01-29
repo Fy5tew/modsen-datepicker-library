@@ -1,6 +1,15 @@
 import { Day } from '#/constants/days';
 
-export type Datasource<T, R> = (args: T) => R;
+export type Datasource<P, R> = (args: P) => R;
 
-export type WeekdayDatasource = Datasource<Date, Day[]>;
-export type DayDatasource = Datasource<Date, Date[]>;
+export type WeekdayWeekDatasource = Datasource<Date, Day[]>;
+
+export type DayMonthDatasource = Datasource<Date, Date[]>;
+
+export interface IWeekdayDatasourceManager {
+    getWeekDatasource: () => WeekdayWeekDatasource;
+}
+
+export interface IDayDatasourceManager {
+    getMonthDatasource: () => DayMonthDatasource;
+}

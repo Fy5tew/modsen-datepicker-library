@@ -1,16 +1,21 @@
 import { ComponentType } from 'react';
 
 import { CalendarProps } from '#/components/Calendar';
-import { DayDatasource } from '#/types/datasources';
+import { IDayDatasourceManager } from '#/types/datasources';
 
-export function withDayDatasource(datasource: DayDatasource) {
+export function withDayDatasourceManager(
+    datasourceManager: IDayDatasourceManager
+) {
     return function withDayDatasourceDecorator<P extends CalendarProps>(
         BaseComponent: ComponentType<P>
     ) {
-        return function WrappedComponent({ dayDatasource, ...props }: P) {
+        return function WrappedComponent({
+            dayDatasourceManager,
+            ...props
+        }: P) {
             const newProps: P = {
                 ...props,
-                dayDatasource: dayDatasource ?? datasource,
+                dayDatasourceManager: dayDatasourceManager ?? datasourceManager,
             } as P;
             return <BaseComponent {...newProps} />;
         };

@@ -1,12 +1,17 @@
 import { COLUMNS_COUNT, ROWS_DAYS_COUNT } from '#/constants/calendar';
 import { Day } from '#/constants/days';
-import { DayDatasource, WeekdayDatasource } from '#/types/datasources';
+import {
+    DayMonthDatasource,
+    IDayDatasourceManager,
+    IWeekdayDatasourceManager,
+    WeekdayWeekDatasource,
+} from '#/types/datasources';
 
 import { getDay, getMonthDays, getNextDayDate, getPrevDayDate } from './date';
 import { getNextDay, getPrevDay } from './day';
 
-export function getWeekdayDatasource(startDay: Day): WeekdayDatasource {
-    return function weekdaysDatasource(_: Date): Day[] {
+export function getWeekdayWeekDatasource(startDay: Day): WeekdayWeekDatasource {
+    return function weekdayWeekDatasource(_: Date): Day[] {
         const weekdays: Day[] = [];
 
         let day = startDay;
@@ -20,8 +25,8 @@ export function getWeekdayDatasource(startDay: Day): WeekdayDatasource {
     };
 }
 
-export function getMonthDayDatasource(startDay: Day): DayDatasource {
-    return function monthDatasource(date: Date): Date[] {
+export function getDayMonthDatasource(startDay: Day): DayMonthDatasource {
+    return function dayMonthDatasource(date: Date): Date[] {
         const endDay = getPrevDay(startDay);
         const monthDays = getMonthDays(date);
 
@@ -39,4 +44,28 @@ export function getMonthDayDatasource(startDay: Day): DayDatasource {
 
         return monthDays;
     };
+}
+
+export class WeekdayDatasourceManager implements IWeekdayDatasourceManager {
+    protected readonly _startDay: Day;
+
+    constructor(startDay: Day) {
+        this._startDay = startDay;
+    }
+
+    getWeekDatasource(): WeekdayWeekDatasource {
+        return getWeekdayWeekDatasource(this._startDay);
+    }
+}
+
+export class DayDatasourceManager implements IDayDatasourceManager {
+    protected readonly _startDay: Day;
+
+    constructor(startDay: Day) {
+        this._startDay = startDay;
+    }
+
+    getMonthDatasource(): DayMonthDatasource {
+        return getDayMonthDatasource(this._startDay);
+    }
 }

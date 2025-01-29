@@ -1,42 +1,39 @@
 import { CellGrid } from '#/components/CellGrid';
+import { DateSlider } from '#/components/DateSlider';
+import { DayCell } from '#/components/DayCell';
+import { ErrorBoundary } from '#/components/ErrorBoundary';
+import { WeekdayCell } from '#/components/WeekdayCell';
 import {
     COLUMNS_COUNT,
-    DEFAULT_START_DAY,
+    DEFAULT_DAY_DATASOURCE_MANAGER,
+    DEFAULT_WEEKDAY_DATASOURCE_MANAGER,
     ROWS_DAYS_COUNT,
     ROWS_WEEKDAYS_COUNT,
 } from '#/constants/calendar';
 import { useFormatters } from '#/contexts/formatters';
 import { useInternalValue } from '#/hooks/useInternalValue';
-import { DayDatasource, WeekdayDatasource } from '#/types/datasources';
-import { DayRenderer } from '#/types/renderers';
 import {
-    getMonthDayDatasource,
-    getWeekdayDatasource,
-} from '#/utils/datasources';
+    IDayDatasourceManager,
+    IWeekdayDatasourceManager,
+} from '#/types/datasources';
+import { DayRenderer } from '#/types/renderers';
 import { getNextMonthDate, getPrevMonthDate } from '#/utils/date';
 import { defaultDayRenderer } from '#/utils/renderers';
 
-import { DateSlider } from '../DateSlider';
-import { DayCell } from '../DayCell';
-import { ErrorBoundary } from '../ErrorBoundary';
-import { WeekdayCell } from '../WeekdayCell';
 import { Wrapper } from './styled';
-
-const DEFAULT_WEEKDAY_DATASOURCE = getWeekdayDatasource(DEFAULT_START_DAY);
-const DEFAULT_DAY_DATASOURCE = getMonthDayDatasource(DEFAULT_START_DAY);
 
 export interface CalendarProps {
     date?: Date;
-    weekdayDatasource?: WeekdayDatasource;
-    dayDatasource?: DayDatasource;
+    weekdayDatasourceManager?: IWeekdayDatasourceManager;
+    dayDatasourceManager?: IDayDatasourceManager;
     dayRenderer?: DayRenderer;
     onDateChange?: (date: Date) => void;
 }
 
 export function Calendar({
     date: externalDate,
-    weekdayDatasource = DEFAULT_WEEKDAY_DATASOURCE,
-    dayDatasource = DEFAULT_DAY_DATASOURCE,
+    weekdayDatasourceManager = DEFAULT_WEEKDAY_DATASOURCE_MANAGER,
+    dayDatasourceManager = DEFAULT_DAY_DATASOURCE_MANAGER,
     dayRenderer = defaultDayRenderer,
     onDateChange,
 }: CalendarProps) {
@@ -69,21 +66,25 @@ export function Calendar({
                     columns={COLUMNS_COUNT}
                     overflow={false}
                 >
-                    {weekdayDatasource(date).map((d) => (
-                        <WeekdayCell key={d} day={d} />
-                    ))}
+                    {weekdayDatasourceManager
+                        .getWeekDatasource()(date)
+                        .map((d) => (
+                            <WeekdayCell key={d} day={d} />
+                        ))}
                 </CellGrid>
                 <CellGrid
                     rows={ROWS_DAYS_COUNT}
                     columns={COLUMNS_COUNT}
                     overflow={false}
                 >
-                    {dayDatasource(date).map((d) => (
-                        <DayCell
-                            key={d.getTime()}
-                            {...dayRenderer({ date: d })}
-                        />
-                    ))}
+                    {dayDatasourceManager
+                        .getMonthDatasource()(date)
+                        .map((d) => (
+                            <DayCell
+                                key={d.getTime()}
+                                {...dayRenderer({ date: d })}
+                            />
+                        ))}
                 </CellGrid>
             </Wrapper>
         </ErrorBoundary>

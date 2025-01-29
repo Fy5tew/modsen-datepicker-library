@@ -28,8 +28,8 @@ const meta: Meta<typeof DaySelectionCalendar> = {
         selectedDay: {
             control: 'date',
         },
-        weekdayDatasource: { table: { disable: true } },
-        dayDatasource: { table: { disable: true } },
+        weekdayDatasourceManager: { table: { disable: true } },
+        dayDatasourceManager: { table: { disable: true } },
         onDateChange: { table: { disable: true } },
         onDaySelect: { table: { disable: true } },
     },
