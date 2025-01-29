@@ -7,4 +7,6 @@ export interface Formatters {
     formatDayCell: Formatter<Date>;
     formatCalendarSliderWeekTitle: Formatter<Date>;
     formatCalendarSliderMonthTitle: Formatter<Date>;
+    formatCalendarSliderYearTitle: Formatter<Date>;
+    formatYearCalendarMonthTitle: Formatter<Date>;
 }

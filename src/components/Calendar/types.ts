@@ -2,6 +2,7 @@ import { CalendarType } from '#/constants/calendar';
 import {
     DayMonthDatasource,
     DayWeekDatasource,
+    DayYearDatasource,
     IDayDatasourceManager,
     IWeekdayDatasourceManager,
     WeekdayWeekDatasource,
@@ -27,5 +28,11 @@ export interface WeekCalendarProps extends Required<BaseCalendarProps> {
 
 export interface MonthCalendarProps extends Required<BaseCalendarProps> {
     weekdayDatasource: WeekdayWeekDatasource;
+    dayDatasource: DayMonthDatasource;
+}
+
+export interface YearCalendarProps extends Required<BaseCalendarProps> {
+    weekdayDatasource: WeekdayWeekDatasource;
+    yearDatasource: DayYearDatasource;
     dayDatasource: DayMonthDatasource;
 }

@@ -129,6 +129,14 @@ export function getPrevMonthDate(date: Date): Date {
     return createDate(date.getFullYear(), date.getMonth() - 1, 1);
 }
 
+export function getNextYearDate(date: Date): Date {
+    return createDate(date.getFullYear() + 1, 0, 1);
+}
+
+export function getPrevYearDate(date: Date): Date {
+    return createDate(date.getFullYear() - 1, 0, 1);
+}
+
 export function getMonthDays(date: Date): Date[] {
     const startDay = createDate(date.getFullYear(), date.getMonth(), 1);
     const monthDays: Date[] = [];
@@ -141,6 +149,20 @@ export function getMonthDays(date: Date): Date[] {
     } while (day.getMonth() === startDay.getMonth());
 
     return monthDays;
+}
+
+export function getYearMonths(date: Date): Date[] {
+    const startMonth = createDate(date.getFullYear(), 0, 1);
+    const yearMonths: Date[] = [];
+
+    let month = startMonth;
+
+    do {
+        yearMonths.push(month);
+        month = getNextMonthDate(month);
+    } while (month.getFullYear() === startMonth.getFullYear());
+
+    return yearMonths;
 }
 
 export function defaultIsWeekend(date: Date): boolean {

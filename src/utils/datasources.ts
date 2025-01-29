@@ -1,5 +1,5 @@
 import {
-    COLUMNS_COUNT,
+    COLUMNS_DAYS_COUNT,
     ROWS_DAYS_MONTH_COUNT,
     ROWS_DAYS_WEEK_COUNT,
 } from '#/constants/calendar';
@@ -7,12 +7,19 @@ import { Day } from '#/constants/days';
 import {
     DayMonthDatasource,
     DayWeekDatasource,
+    DayYearDatasource,
     IDayDatasourceManager,
     IWeekdayDatasourceManager,
     WeekdayWeekDatasource,
 } from '#/types/datasources';
 
-import { getDay, getMonthDays, getNextDayDate, getPrevDayDate } from './date';
+import {
+    getDay,
+    getMonthDays,
+    getNextDayDate,
+    getPrevDayDate,
+    getYearMonths,
+} from './date';
 import { getNextDay, getPrevDay } from './day';
 
 export function getWeekdayWeekDatasource(startDay: Day): WeekdayWeekDatasource {
@@ -43,7 +50,7 @@ export function getDayWeekDatasource(startDay: Day): DayWeekDatasource {
             weekDays.push(getNextDayDate(weekDays.at(-1) as Date));
         }
 
-        while (weekDays.length !== COLUMNS_COUNT * ROWS_DAYS_WEEK_COUNT) {
+        while (weekDays.length !== COLUMNS_DAYS_COUNT * ROWS_DAYS_WEEK_COUNT) {
             weekDays.push(getNextDayDate(weekDays.at(-1) as Date));
         }
 
@@ -64,11 +71,20 @@ export function getDayMonthDatasource(startDay: Day): DayMonthDatasource {
             monthDays.push(getNextDayDate(monthDays.at(-1) as Date));
         }
 
-        while (monthDays.length !== COLUMNS_COUNT * ROWS_DAYS_MONTH_COUNT) {
+        while (
+            monthDays.length !==
+            COLUMNS_DAYS_COUNT * ROWS_DAYS_MONTH_COUNT
+        ) {
             monthDays.push(getNextDayDate(monthDays.at(-1) as Date));
         }
 
         return monthDays;
+    };
+}
+
+export function getDayYearDatasource(): DayYearDatasource {
+    return function dayYearDatasource(date: Date): Date[] {
+        return getYearMonths(date);
     };
 }
 
@@ -97,5 +113,9 @@ export class DayDatasourceManager implements IDayDatasourceManager {
 
     getMonthDatasource(): DayMonthDatasource {
         return getDayMonthDatasource(this._startDay);
+    }
+
+    getYearDatasource(): DayYearDatasource {
+        return getDayYearDatasource();
     }
 }

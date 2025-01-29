@@ -11,3 +11,11 @@ export const Wrapper = styled.div`
     border-radius: 8px;
     padding: 0.5em;
 `;
+
+export const YearMonthWrapper = styled(Wrapper)`
+    border: none;
+`;
+
+export const MonthTitle = styled.h4`
+    text-align: center;
+`;

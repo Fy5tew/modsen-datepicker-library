@@ -3,7 +3,8 @@ import { DateSlider } from '#/components/DateSlider';
 import { DayCell } from '#/components/DayCell';
 import { WeekdayCell } from '#/components/WeekdayCell';
 import {
-    COLUMNS_COUNT,
+    COLUMNS_DAYS_COUNT,
+    COLUMNS_WEEKDAYS_COUNT,
     ROWS_DAYS_MONTH_COUNT,
     ROWS_WEEKDAYS_COUNT,
 } from '#/constants/calendar';
@@ -40,7 +41,7 @@ export function MonthCalendar({
             />
             <CellGrid
                 rows={ROWS_WEEKDAYS_COUNT}
-                columns={COLUMNS_COUNT}
+                columns={COLUMNS_WEEKDAYS_COUNT}
                 overflow={false}
             >
                 {weekdayDatasource(date).map((d) => (
@@ -49,7 +50,7 @@ export function MonthCalendar({
             </CellGrid>
             <CellGrid
                 rows={ROWS_DAYS_MONTH_COUNT}
-                columns={COLUMNS_COUNT}
+                columns={COLUMNS_DAYS_COUNT}
                 overflow={false}
             >
                 {dayDatasource(date).map((d) => (

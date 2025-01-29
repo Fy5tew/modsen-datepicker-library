@@ -13,6 +13,7 @@ import { defaultDayRenderer } from '#/utils/renderers';
 import { MonthCalendar } from './MonthCalendar';
 import { CalendarProps } from './types';
 import { WeekCalendar } from './WeekCalendar';
+import { YearCalendar } from './YearCalendar';
 
 export function Calendar({
     date: externalDate,
@@ -52,6 +53,20 @@ export function Calendar({
                 />
             );
             break;
+        case CalendarType.YEAR:
+            calendarComponent = (
+                <YearCalendar
+                    date={date}
+                    weekdayDatasource={weekdayDatasourceManager.getWeekDatasource()}
+                    yearDatasource={dayDatasourceManager.getYearDatasource()}
+                    dayDatasource={dayDatasourceManager.getMonthDatasource()}
+                    dayRenderer={dayRenderer}
+                    onDateChange={setDate}
+                />
+            );
+            break;
+        default:
+            throw TypeError(`Unknown \`type\` prop value: ${type}`);
     }
 
     return <ErrorBoundary>{calendarComponent}</ErrorBoundary>;
