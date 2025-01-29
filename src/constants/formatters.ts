@@ -8,5 +8,5 @@ import {
 export const FORMATTERS: Formatters = {
     formatWeekdayCell: dayShortNameFormatter,
     formatDayCell: dateDayNumberFormatter,
-    formatCalendarSliderTitle: dateMonthYearFormatter,
+    formatCalendarSliderMonthTitle: dateMonthYearFormatter,
 };

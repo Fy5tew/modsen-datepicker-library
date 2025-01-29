@@ -1,6 +1,6 @@
 import { ComponentType, useEffect } from 'react';
 
-import { CalendarProps } from '#/components/Calendar';
+import { CalendarProps } from '#/components/Calendar/types';
 import { MAX_DATE, MIN_DATE } from '#/constants/date';
 import { useInternalValue } from '#/hooks/useInternalValue';
 import { combineRenderers, limitDayRenderer } from '#/utils/renderers';

@@ -1,6 +1,6 @@
 import { ComponentType, useEffect } from 'react';
 
-import { CalendarProps } from '#/components/Calendar';
+import { CalendarProps } from '#/components/Calendar/types';
 import { useInternalValue } from '#/hooks/useInternalValue';
 import { isDayInMonth } from '#/utils/date';
 import { combineRenderers, selectedDayRenderer } from '#/utils/renderers';

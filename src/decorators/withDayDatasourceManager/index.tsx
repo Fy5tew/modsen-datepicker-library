@@ -1,6 +1,6 @@
 import { ComponentType } from 'react';
 
-import { CalendarProps } from '#/components/Calendar';
+import { CalendarProps } from '#/components/Calendar/types';
 import { IDayDatasourceManager } from '#/types/datasources';
 
 export function withDayDatasourceManager(

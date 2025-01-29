@@ -1,7 +1,7 @@
 import { ComponentType, RefObject, useRef } from 'react';
 
 import { CalendarBuilder } from '#/builders/CalendarBuilder';
-import { CalendarProps } from '#/components/Calendar';
+import { CalendarProps } from '#/components/Calendar/types';
 import {
     withRangeSelection,
     WithRangeSelectionProps,

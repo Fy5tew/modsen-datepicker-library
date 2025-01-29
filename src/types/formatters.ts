@@ -5,5 +5,5 @@ export type Formatter<T> = (data: T) => string;
 export interface Formatters {
     formatWeekdayCell: Formatter<Day>;
     formatDayCell: Formatter<Date>;
-    formatCalendarSliderTitle: Formatter<Date>;
+    formatCalendarSliderMonthTitle: Formatter<Date>;
 }

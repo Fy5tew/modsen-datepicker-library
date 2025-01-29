@@ -5,10 +5,16 @@ import {
 
 import { Day } from './days';
 
+export enum CalendarType {
+    MONTH,
+}
+
 export const COLUMNS_COUNT = 7;
 export const ROWS_WEEKDAYS_COUNT = 1;
-export const ROWS_DAYS_COUNT = 6;
+export const ROWS_DAYS_MONTH_COUNT = 6;
 export const DEFAULT_START_DAY = Day.Sunday;
+
+export const DEFAULT_TYPE = CalendarType.MONTH;
 
 export const DEFAULT_WEEKDAY_DATASOURCE_MANAGER = new WeekdayDatasourceManager(
     DEFAULT_START_DAY

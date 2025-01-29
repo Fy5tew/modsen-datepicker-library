@@ -1,4 +1,4 @@
-import { COLUMNS_COUNT, ROWS_DAYS_COUNT } from '#/constants/calendar';
+import { COLUMNS_COUNT, ROWS_DAYS_MONTH_COUNT } from '#/constants/calendar';
 import { Day } from '#/constants/days';
 import {
     DayMonthDatasource,
@@ -38,7 +38,7 @@ export function getDayMonthDatasource(startDay: Day): DayMonthDatasource {
             monthDays.push(getNextDayDate(monthDays.at(-1) as Date));
         }
 
-        while (monthDays.length !== COLUMNS_COUNT * ROWS_DAYS_COUNT) {
+        while (monthDays.length !== COLUMNS_COUNT * ROWS_DAYS_MONTH_COUNT) {
             monthDays.push(getNextDayDate(monthDays.at(-1) as Date));
         }
 

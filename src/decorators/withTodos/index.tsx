@@ -1,7 +1,7 @@
 import { ComponentType } from 'react';
 
 import { ActionButton } from '#/components/ActionButton';
-import { CalendarProps } from '#/components/Calendar';
+import { CalendarProps } from '#/components/Calendar/types';
 import { WithDaySelectionProps } from '#/decorators/withDaySelection';
 import { useInternalValue } from '#/hooks/useInternalValue';
 import { useTodos } from '#/hooks/useTodos';

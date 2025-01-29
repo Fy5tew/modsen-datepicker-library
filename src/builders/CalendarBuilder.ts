@@ -1,6 +1,7 @@
 import { ComponentType } from 'react';
 
-import { Calendar, CalendarProps } from '#/components/Calendar';
+import { Calendar } from '#/components/Calendar';
+import { CalendarProps } from '#/components/Calendar/types';
 
 export class CalendarBuilder<T extends CalendarProps> {
     private BaseComponent: ComponentType<T>;

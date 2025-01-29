@@ -1,6 +1,6 @@
 import { ComponentType, useCallback, useEffect } from 'react';
 
-import { CalendarProps } from '#/components/Calendar';
+import { CalendarProps } from '#/components/Calendar/types';
 import { useInternalValue } from '#/hooks/useInternalValue';
 import { isDayInMonth, isOneDay } from '#/utils/date';
 import { combineRenderers, rangeDayRenderer } from '#/utils/renderers';

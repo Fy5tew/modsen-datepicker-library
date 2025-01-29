@@ -1,6 +1,8 @@
 import { Meta, StoryObj } from '@storybook/react';
 import { fn } from '@storybook/test';
 
+import { CalendarType } from '#/constants/calendar';
+
 import { Calendar } from '.';
 
 type Story = StoryObj<typeof Calendar>;
@@ -14,6 +16,13 @@ const meta: Meta<typeof Calendar> = {
     argTypes: {
         date: {
             control: 'date',
+        },
+        type: {
+            control: 'select',
+            options: Object.values(CalendarType).filter(
+                (x) => typeof x === 'string'
+            ),
+            mapping: CalendarType,
         },
         weekdayDatasourceManager: { table: { disable: true } },
         dayDatasourceManager: { table: { disable: true } },

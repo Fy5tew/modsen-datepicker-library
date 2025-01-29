@@ -1,6 +1,6 @@
 import { ComponentType } from 'react';
 
-import { CalendarProps } from '#/components/Calendar';
+import { CalendarProps } from '#/components/Calendar/types';
 import { useInternalValue } from '#/hooks/useInternalValue';
 import { combineRenderers, disabledDayRenderer } from '#/utils/renderers';
 

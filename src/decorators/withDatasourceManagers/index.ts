@@ -1,7 +1,7 @@
 import { ComponentType } from 'react';
 
 import { CalendarBuilder } from '#/builders/CalendarBuilder';
-import { CalendarProps } from '#/components/Calendar';
+import { CalendarProps } from '#/components/Calendar/types';
 import { withDayDatasourceManager } from '#/decorators/withDayDatasourceManager';
 import { withWeekdayDatasourceManager } from '#/decorators/withWeekdayDatasourceManager';
 import {

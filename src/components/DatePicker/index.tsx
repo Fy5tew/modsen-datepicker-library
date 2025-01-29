@@ -2,7 +2,7 @@ import { ComponentType, RefObject } from 'react';
 import { useRef } from 'react';
 
 import { CalendarBuilder } from '#/builders/CalendarBuilder';
-import { CalendarProps } from '#/components/Calendar';
+import { CalendarProps } from '#/components/Calendar/types';
 import { DateInput } from '#/components/DateInput';
 import {
     withDaySelection,

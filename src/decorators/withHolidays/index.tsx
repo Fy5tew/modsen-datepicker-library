@@ -1,6 +1,6 @@
 import { ComponentType } from 'react';
 
-import { CalendarProps } from '#/components/Calendar';
+import { CalendarProps } from '#/components/Calendar/types';
 import { defaultIsHoliday } from '#/utils/date';
 import { combineRenderers, holidayDayRenderer } from '#/utils/renderers';
 
