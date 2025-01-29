@@ -14,51 +14,17 @@ export function getDayDate(date: Date): Date {
 }
 
 export function getDay(date: Date): Day {
-    switch (date.getDay()) {
-        case Day.Monday:
-            return Day.Monday;
-        case Day.Tuesday:
-            return Day.Tuesday;
-        case Day.Wednesday:
-            return Day.Wednesday;
-        case Day.Thursday:
-            return Day.Thursday;
-        case Day.Friday:
-            return Day.Friday;
-        case Day.Saturday:
-            return Day.Saturday;
-        case Day.Sunday:
-            return Day.Sunday;
+    const day = date.getDay();
+    if (day in Day) {
+        return day as Day;
     }
     throw new Error('Invalid Date');
 }
 
 export function getMonth(date: Date): Month {
-    switch (date.getMonth()) {
-        case Month.January:
-            return Month.January;
-        case Month.February:
-            return Month.February;
-        case Month.March:
-            return Month.March;
-        case Month.April:
-            return Month.April;
-        case Month.May:
-            return Month.May;
-        case Month.June:
-            return Month.June;
-        case Month.July:
-            return Month.July;
-        case Month.August:
-            return Month.August;
-        case Month.September:
-            return Month.September;
-        case Month.October:
-            return Month.October;
-        case Month.November:
-            return Month.November;
-        case Month.December:
-            return Month.December;
+    const month = date.getMonth();
+    if (month in Month) {
+        return month as Month;
     }
     throw new Error('Invalid Date');
 }
