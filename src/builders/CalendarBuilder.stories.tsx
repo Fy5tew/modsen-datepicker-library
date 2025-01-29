@@ -1,6 +1,7 @@
 import { Meta, StoryObj } from '@storybook/react';
 import { fn } from '@storybook/test';
 
+import { CalendarType } from '#/constants/calendar';
 import { withDateLimits } from '#/decorators/withDateLimits';
 import { withDaySelection } from '#/decorators/withDaySelection';
 import { withDisabledDays } from '#/decorators/withDisabledDays';
@@ -70,6 +71,13 @@ const meta: Meta<typeof CustomCalendar> = {
         },
         maxDate: {
             control: 'date',
+        },
+        type: {
+            control: 'select',
+            options: Object.values(CalendarType).filter(
+                (x) => typeof x === 'string'
+            ),
+            mapping: CalendarType,
         },
         weekdayDatasourceManager: { table: { disable: true } },
         dayDatasourceManager: { table: { disable: true } },

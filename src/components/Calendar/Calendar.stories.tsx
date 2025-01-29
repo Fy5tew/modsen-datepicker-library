@@ -34,6 +34,22 @@ const meta: Meta<typeof Calendar> = {
     },
 };
 
-export const Default: Story = {};
+export const Week: Story = {
+    args: {
+        type: CalendarType.WEEK,
+    },
+};
+
+export const Month: Story = {
+    args: {
+        type: CalendarType.MONTH,
+    },
+};
+
+export const Year: Story = {
+    args: {
+        type: CalendarType.YEAR,
+    },
+};
 
 export default meta;
