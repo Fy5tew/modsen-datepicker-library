@@ -1,5 +1,6 @@
 import { CalendarType } from '#/constants/calendar';
 import {
+    Datasource,
     DayMonthDatasource,
     DayWeekDatasource,
     DayYearDatasource,
@@ -35,4 +36,13 @@ export interface YearCalendarProps extends Required<BaseCalendarProps> {
     weekdayDatasource: WeekdayWeekDatasource;
     yearDatasource: DayYearDatasource;
     dayDatasource: DayMonthDatasource;
+}
+
+export interface CalendarGridProps {
+    date: Date;
+    daysRows: number;
+    daysColumns: number;
+    dayRenderer: DayRenderer;
+    weekdayDatasource: WeekdayWeekDatasource;
+    dayDatasource: Datasource<Date, Date[]>;
 }
