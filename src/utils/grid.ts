@@ -1,4 +1,4 @@
-export function validSize(size?: number): boolean {
+export function isValidDimansionSize(size?: number): boolean {
     return size !== undefined && size > 0;
 }
 
@@ -7,15 +7,15 @@ export function getGridSize(
     rows?: number,
     columns?: number
 ): [number, number] {
-    if (!validSize(rows) && !validSize(columns)) {
+    if (!isValidDimansionSize(rows) && !isValidDimansionSize(columns)) {
         const size = Math.ceil(Math.sqrt(count));
         return [size, size];
     }
-    if (!validSize(rows) && validSize(columns)) {
+    if (!isValidDimansionSize(rows) && isValidDimansionSize(columns)) {
         rows = Math.ceil(count / (columns as number));
         return [rows, columns as number];
     }
-    if (!validSize(columns) && validSize(rows)) {
+    if (!isValidDimansionSize(columns) && isValidDimansionSize(rows)) {
         columns = Math.ceil(count / (rows as number));
         return [rows as number, columns];
     }

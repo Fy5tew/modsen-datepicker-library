@@ -1,7 +1,8 @@
 import { Children, ReactNode } from 'react';
 
+import { getGridSize } from '#/utils/grid';
+
 import { Grid } from './styled';
-import { getGridSize } from './utils';
 
 interface DayGridProps {
     rows?: number;
