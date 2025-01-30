@@ -73,7 +73,7 @@ export function DateInput({
                 </Label>
                 <InputWrapper>
                     <Button onClick={onButtonClick}>
-                        <Icon src={calendar} alt="" />
+                        <Icon src={calendar} alt="📅" />
                     </Button>
                     <Input
                         placeholder={placeholder}
@@ -87,7 +87,7 @@ export function DateInput({
                         $isHidden={inputValue.length <= 0}
                         onClick={handleDateClear}
                     >
-                        <Icon src={clear} alt="" />
+                        <Icon src={clear} alt="✖" />
                     </Button>
                 </InputWrapper>
             </Wrapper>
