@@ -1,9 +1,10 @@
 import { ChangeEvent, useEffect, useState } from 'react';
 
+import { ErrorBoundary } from '#/components/ErrorBoundary';
 import { useIcons } from '#/contexts/icons';
 import { useInternalValue } from '#/hooks/useInternalValue';
+import { formatDate, parseDateString } from '#/utils/dateInput';
 
-import { ErrorBoundary } from '../ErrorBoundary';
 import {
     Button,
     ErrorMessage,
@@ -13,7 +14,6 @@ import {
     Label,
     Wrapper,
 } from './styled';
-import { formatDate, parseDateString } from './utils';
 
 const DEFAULT_LABEL = 'Date';
 const DEFAULT_PLACEHOLDER = 'Choose Date';
