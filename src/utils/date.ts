@@ -1,11 +1,23 @@
 import { Day, DEFAULT_HOLIDAYS, DEFAULT_WEEKENDS } from '#/constants/days';
 import { Month } from '#/constants/months';
 
-export function createDate(year: number, month: number, day: number): Date {
+export function createDate(
+    year: number = 0,
+    monthIndex: number = 0,
+    day: number = 0,
+    hours: number = 0,
+    minutes: number = 0,
+    seconds: number = 0,
+    milliseconds: number = 0
+): Date {
     const date = new Date(0);
     date.setFullYear(year);
-    date.setMonth(month);
+    date.setMonth(monthIndex);
     date.setDate(day);
+    date.setHours(hours);
+    date.setMinutes(minutes);
+    date.setSeconds(seconds);
+    date.setMilliseconds(milliseconds);
     return date;
 }
 
