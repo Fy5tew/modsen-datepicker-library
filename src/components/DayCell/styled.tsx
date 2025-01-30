@@ -158,7 +158,9 @@ const TodoCellWrapper = styled.div`
 `;
 
 export const TodoCell =
-    (Base: DayCellRenderComponent = BaseCell) =>
+    (
+        Base: DayCellRenderComponent = BaseCell
+    ): ComponentType<DayCellRenderProps> =>
     (props: DayCellRenderProps) => (
         <TodoCellWrapper>
             <Base {...props} />
