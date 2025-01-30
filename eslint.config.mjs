@@ -31,7 +31,6 @@ export default [
             'coverage/*',
             '*.config.js',
             '*.config.ts',
-            '**/*.test.ts*',
         ],
     },
     ...fixupConfigRules(
