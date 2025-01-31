@@ -6,7 +6,9 @@ interface ModalWrapperProps {
     $isOpen?: boolean;
 }
 
-export const Wrapper = styled.div``;
+export const Wrapper = styled.div`
+    position: relative;
+`;
 
 export const ModalWrapper = styled.div<ModalWrapperProps>`
     position: fixed;

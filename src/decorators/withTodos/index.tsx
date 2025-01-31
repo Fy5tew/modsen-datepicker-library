@@ -1,5 +1,4 @@
 import { ComponentType, RefObject, useRef } from 'react';
-import { createPortal } from 'react-dom';
 
 import { ActionButton } from '#/components/ActionButton';
 import { CalendarProps } from '#/components/Calendar/types';
@@ -78,36 +77,31 @@ export function withTodos() {
             } as P;
 
             return (
-                <Wrapper>
+                <Wrapper ref={wrapperRef}>
                     <BaseComponent {...newProps} />
                     <ActionButton onClick={toggleTodos}>
                         {isTodosOpen ? 'Close todos' : 'Open todos'}
                     </ActionButton>
-                    {createPortal(
-                        <ModalWrapper $isOpen={isTodosOpen} ref={wrapperRef}>
-                            <Title>Todos for {formatDate(selectedDay)}</Title>
-                            <AddButton onClick={handleAddTodo}>
-                                Add todo
-                            </AddButton>
-                            <TodosList>
-                                {currentTodos.length ? (
-                                    currentTodos.map(({ id, title }) => (
-                                        <TodoWrapper key={id}>
-                                            <TodoTitle>{title}</TodoTitle>
-                                            <RemoveButton
-                                                onClick={() => remove(id)}
-                                            >
-                                                ✖
-                                            </RemoveButton>
-                                        </TodoWrapper>
-                                    ))
-                                ) : (
-                                    <TodoTitle>There are no todos</TodoTitle>
-                                )}
-                            </TodosList>
-                        </ModalWrapper>,
-                        document.body
-                    )}
+                    <ModalWrapper $isOpen={isTodosOpen}>
+                        <Title>Todos for {formatDate(selectedDay)}</Title>
+                        <AddButton onClick={handleAddTodo}>Add todo</AddButton>
+                        <TodosList>
+                            {currentTodos.length ? (
+                                currentTodos.map(({ id, title }) => (
+                                    <TodoWrapper key={id}>
+                                        <TodoTitle>{title}</TodoTitle>
+                                        <RemoveButton
+                                            onClick={() => remove(id)}
+                                        >
+                                            ✖
+                                        </RemoveButton>
+                                    </TodoWrapper>
+                                ))
+                            ) : (
+                                <TodoTitle>There are no todos</TodoTitle>
+                            )}
+                        </TodosList>
+                    </ModalWrapper>
                 </Wrapper>
             );
         };
