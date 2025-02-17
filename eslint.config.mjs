@@ -29,6 +29,7 @@ export default [
             'build/*',
             'dist/*',
             'coverage/*',
+            'storybook-static',
             '*.config.js',
             '*.config.ts',
         ],
