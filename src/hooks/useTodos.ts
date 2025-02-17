@@ -7,7 +7,7 @@ const TODOS_STORAGE_KEY = '@fy5tew/modsen-datepicker-library/todos';
 interface TodosState {
     todos: Todo[];
     add: (todo: Todo) => void;
-    remove: (todo: Todo) => void;
+    remove: (todoId: string) => void;
 }
 
 export function useTodos(): TodosState {
@@ -26,17 +26,15 @@ export function useTodos(): TodosState {
     }, []);
 
     useEffect(() => {
-        if (todos.length > 0) {
-            localStorage.setItem(TODOS_STORAGE_KEY, JSON.stringify(todos));
-        }
+        localStorage.setItem(TODOS_STORAGE_KEY, JSON.stringify(todos));
     }, [todos]);
 
     const add = useCallback((todo: Todo) => {
         setTodos((prevTodos) => [...prevTodos, todo]);
     }, []);
 
-    const remove = useCallback((todo: Todo) => {
-        setTodos((prevTodos) => prevTodos.filter((td) => td !== todo));
+    const remove = useCallback((todoId: string) => {
+        setTodos((prevTodos) => prevTodos.filter(({ id }) => id !== todoId));
     }, []);
 
     return { todos, add, remove };
